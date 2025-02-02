@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PlayPal Search</title>
+</head>
+<body>
+    <!-- 상단 아이콘 및 로그인 바 -->
+    <header>
+        <div class="icon">
+            <img src="icon.png" alt="Icon" />
+        </div>
+        <div class="login-bar">
+            <div th:if="${userLoggedIn}">
+                <img src="profile-pic.png" alt="프로필 사진" class="profile-pic" />
+            </div>
+            <div th:if="${!userLoggedIn}">
+                <a href="/login">로그인</a>
+            </div>
+        </div>
+    </header>
+
+    <!-- 검색 메인 -->
+    <div class="search-main">
+        <div class="search-input">
+            <input type="text" placeholder="검색어 입력" th:value="${searchTerm}" />
+            <button type="submit"><i class="fas fa-search" aria-hidden="true"></i></button>
+        </div>
+
+        <div class="tabs">
+            <button class="tab-button" onclick="showTab('games')">게임</button>
+            <button class="tab-button" onclick="showTab('community')">커뮤니티</button>
+        </div>
+
+        <div id="games" class="tab-content" style="display: block;">
+            <h2>게임 리스트</h2>
+            <div class="game-cards" th:each="game : ${games}">
+                <div class="game-card">
+                    <img th:src="${game.thumbnail}" alt="게임 섬네일" class="game-thumbnail" />
+                    <h3 th:text="${game.name}">게임 이름</h3>
+                    <div class="platform-icon">
+                        <i class="fab fa-ps4" aria-hidden="true"></i> <!-- 플랫폼 아이콘 예시 -->
+                    </div>
+                    <p th:text="${game.releaseDate}">게임 출시일</p>
+                    <p th:text="${game.price}">게임 가격</p>
+                    <div th:if="${game.discount}">
+                        <p th:text="'할인: ' + ${game.discount} + '%'">할인 정보</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div id="community" class="tab-content" style="display:none;">
+            <h2>커뮤니티</h2>
+            <div class="community-names" th:each="community : ${communities}">
+                <h3 th:text="${community.name}">커뮤니티 이름</h3>
+            </div>
+            <div class="community-posts" th:each="post : ${communityPosts}">
+                <h4 th:text="${post.title}">게시글 제목</h4>
+                <p th:text="${post.communityName}">커뮤니티 이름</p>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        function showTab(tabName) {
+            const tabs = document.querySelectorAll('.tab-content');
+            tabs.forEach(tab => {
+                tab.style.display = 'none'; // 모든 탭 숨기기
+            });
+            document.getElementById(tabName).style.display = 'block'; // 선택한 탭만 표시
+        }
+    </script>
+</body>
+</html>

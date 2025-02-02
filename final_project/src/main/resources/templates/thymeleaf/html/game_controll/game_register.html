@@ -1,0 +1,201 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PlayPal Game register</title>
+</head>
+<body>
+    <div class="game-register-container">
+        <h2>게임 등록</h2>
+        <form action="/game/register" method="post" enctype="multipart/form-data">
+            <div class="form-group">
+                <label for="gameId">게임 ID</label>
+                <input type="text" id="gameId" name="gameId" required>
+            </div>
+
+            <div class="form-group">
+                <label for="title">게임 제목</label>
+                <input type="text" id="title" name="title" required>
+            </div>
+
+            <div class="form-group">
+                <label for="description">게임 설명</label>
+                <textarea id="description" name="description" rows="5" required></textarea>
+            </div>
+
+            <div class="form-group">
+                <label for="genre">게임 장르</label>
+                <select id="genre" name="genre" required>
+                    <option value="">장르 선택</option>
+                    <option value="action">액션</option>
+                    <option value="rpg">RPG</option>
+                    <option value="strategy">전략</option>
+                    <option value="simulation">시뮬레이션</option>
+                    <option value="sports">스포츠</option>
+                    <option value="racing">레이싱</option>
+                    <option value="puzzle">퍼즐</option>
+                    <option value="adventure">어드벤처</option>
+                </select>
+            </div>
+
+            <div class="form-group">
+                <label for="tags">게임 태그</label>
+                <input type="text" id="tags" name="tags" placeholder="쉼표로 구분하여 입력">
+            </div>
+
+            <div class="form-group">
+                <label for="price">게임 가격</label>
+                <input type="number" id="price" name="price" min="0" required>
+            </div>
+
+            <div class="form-group">
+                <label for="thumbnail">게임 섬네일</label>
+                <input type="file" id="thumbnail" name="thumbnail" accept="image/*" required>
+            </div>
+
+            <div class="form-group">
+                <label for="screenshots">인게임 스크린샷</label>
+                <input type="file" id="screenshots" name="screenshots" accept="image/*" multiple>
+                <small>여러 장의 스크린샷을 선택할 수 있습니다.</small>
+            </div>
+
+            <div class="form-group">
+                <label>플레이 가능 플랫폼</label>
+                <div class="checkbox-group">
+                    <input type="checkbox" id="windows" name="platforms" value="windows">
+                    <label for="windows">Windows</label>
+                    
+                    <input type="checkbox" id="mac" name="platforms" value="mac">
+                    <label for="mac">Mac</label>
+                    
+                    <input type="checkbox" id="linux" name="platforms" value="linux">
+                    <label for="linux">Linux</label>
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label for="rating">게임 심의 등급</label>
+                <select id="rating" name="rating" required>
+                    <option value="">등급 선택</option>
+                    <option value="all">전체이용가</option>
+                    <option value="12">12세 이용가</option>
+                    <option value="15">15세 이용가</option>
+                    <option value="18">청소년 이용불가</option>
+                </select>
+            </div>
+
+            <div class="form-group">
+                <h3>시스템 요구사항</h3>
+                
+                <div class="requirements-section">
+                    <h4>최소 사양</h4>
+                    <div class="spec-group">
+                        <label for="minOs">운영체제</label>
+                        <input type="text" id="minOs" name="minOs" required>
+                        
+                        <label for="minProcessor">프로세서</label>
+                        <input type="text" id="minProcessor" name="minProcessor" required>
+                        
+                        <label for="minMemory">메모리</label>
+                        <input type="text" id="minMemory" name="minMemory" required>
+                        
+                        <label for="minGraphics">그래픽카드</label>
+                        <input type="text" id="minGraphics" name="minGraphics" required>
+                        
+                        <label for="minStorage">저장공간</label>
+                        <input type="text" id="minStorage" name="minStorage" required>
+                    </div>
+                </div>
+
+                <div class="requirements-section">
+                    <h4>권장 사양</h4>
+                    <div class="spec-group">
+                        <label for="recOs">운영체제</label>
+                        <input type="text" id="recOs" name="recOs">
+                        
+                        <label for="recProcessor">프로세서</label>
+                        <input type="text" id="recProcessor" name="recProcessor">
+                        
+                        <label for="recMemory">메모리</label>
+                        <input type="text" id="recMemory" name="recMemory">
+                        
+                        <label for="recGraphics">그래픽카드</label>
+                        <input type="text" id="recGraphics" name="recGraphics">
+                        
+                        <label for="recStorage">저장공간</label>
+                        <input type="text" id="recStorage" name="recStorage">
+                    </div>
+                </div>
+            </div>
+
+            <button type="submit" class="submit-btn">게임 등록하기</button>
+        </form>
+    </div>
+
+    <style>
+        .game-register-container {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+
+        .form-group {
+            margin-bottom: 20px;
+        }
+
+        label {
+            display: block;
+            margin-bottom: 5px;
+            font-weight: bold;
+        }
+
+        input[type="text"],
+        input[type="number"],
+        textarea,
+        select {
+            width: 100%;
+            padding: 8px;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+        }
+
+        .checkbox-group {
+            display: flex;
+            gap: 20px;
+        }
+
+        .checkbox-group label {
+            display: inline;
+            margin-left: 5px;
+        }
+
+        .requirements-section {
+            margin-top: 15px;
+            padding: 15px;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+        }
+
+        .spec-group {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 10px;
+        }
+
+        .submit-btn {
+            background-color: #4CAF50;
+            color: white;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 16px;
+        }
+
+        .submit-btn:hover {
+            background-color: #45a049;
+        }
+    </style>
+</body>
+</html>
