@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>PlayPal</title>
+    <!--link rel="stylesheet" href="styles.css"--> <!-- 스타일 시트 링크 -->
+</head>
+<body>
+    <!-- 상단 아이콘 및 로그인 바 -->
+    <header>
+        <div class="icon">
+            <img src="icon.png" alt="Icon" />
+        </div>
+        <div class="login-bar">
+            <a href="/login">로그인</a>
+        </div>
+    </header>
+
+    <!-- 가로로 긴 메뉴 바 -->
+    <nav class="menu-bar">
+        <ul>
+            <li><a href="/home"><img src="home-icon.png" alt="홈 아이콘" /></a></li>
+            <li><a href="/about">커뮤니티</a></li>
+            <li><a href="/store">스토어</a></li>
+        </ul>
+        <div class="search-container">
+            <input type="text" placeholder="검색어 입력" />
+            <button type="submit"><i class="fas fa-search" aria-hidden="true"></i></button>
+        </div>
+    </nav>
+
+    <!-- 카드 형태의 메인 콘텐츠 -->
+    <div class="main-content-cards" th:each="card : ${cards}">
+        <div class="card">
+            <h3 th:text="${card.title}">카드 제목</h3>
+            <p th:text="${card.content}">카드 내용</p>
+        </div>
+    </div>
+
+    <!-- 커뮤니티 글 및 할인 게임 섹션 -->
+    <div class="community-and-discounts">
+        <div class="community-posts" th:each="post : ${communityPosts}">
+            <h4 th:text="${post.title}">커뮤니티 글 제목</h4>
+            <p th:text="${post.content}">커뮤니티 글 내용</p>
+        </div>
+        
+        <div class="discounts">
+            <div class="icon-container">
+                <a href="/discount-games"><img src="discount-icon.png" alt="할인 게임 아이콘" /></a>
+                <a href="/game-rankings"><img src="ranking-icon.png" alt="게임 순위 아이콘" /></a>
+                <a href="/game-recommendations"><img src="recommendation-icon.png" alt="게임 추천 아이콘" /></a>
+            </div>
+            <div class="discount-game-cards" th:each="discountCard : ${discountCards}">
+                <div class="card">
+                    <h3 th:text="${discountCard.title}">할인 게임 제목</h3>
+                    <p th:text="${discountCard.content}">할인 게임 내용</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
